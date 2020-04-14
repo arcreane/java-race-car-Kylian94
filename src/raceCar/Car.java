@@ -1,6 +1,12 @@
 package raceCar;
 
 
+
+
+import org.fusesource.jansi.AnsiConsole;
+import static org.fusesource.jansi.Ansi.*;
+import static org.fusesource.jansi.Ansi.Color.*;
+
 import java.util.*;
 
 public class Car {
@@ -17,21 +23,22 @@ public class Car {
 	}
 	
 	public void repare() {
+		AnsiConsole.systemInstall();
 		String[] pieces = {"ROUE", "MOTEUR", "FREIN", "VOLANT"};
 		int randomNum = 0 + (int)(Math.random() * ((3 - 0) + 1));
 		String reparePiece = pieces[randomNum];
-		System.out.println("Votre " + reparePiece  + " est hors service, réparez en ecrivant " + reparePiece + " !!!");
+		System.out.println(ansi().fg(YELLOW).a("Votre " + reparePiece  + " est hors service, réparez en ecrivant " + reparePiece + " !!!"));
 		scan = new Scanner(System.in);
 		String response = scan.nextLine();
 		
 		if(response.equals(reparePiece)) {
-			System.out.println("Bien jouer vous avez réparer votre voiture !!!");
+			System.out.println(ansi().fg(YELLOW).a("Bien jouer vous avez réparer votre voiture !!!").reset());
 		}
 		
 	}
 	 public void boost() {
-		 
-		System.out.println("obtenez le boost, vite !!!");
+		AnsiConsole.systemInstall();
+		System.out.println(ansi().fg(BLUE).a("obtenez le boost, vite !!!").reset());
 		scan = new Scanner(System.in);
 		
 		long startTyping = System.nanoTime();
@@ -44,7 +51,7 @@ public class Car {
 		
 		
 		if(timeToType < 3000 && response.equals("VITESSE")) {
-			System.out.println("Bien joué vous allez plus vite !!!");
+			System.out.println(ansi().fg(BLUE).a("Bien joué vous allez plus vite !!!").reset());
 			this.speed = 120;
 		}
 		 
